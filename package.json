@@ -1,16 +1,16 @@
 {
-  "name": "@meltwater/makenew-node-lib",
-  "version": "1.3.0",
-  "description": "npm package skeleton for Meltwater Node.js libraries.",
+  "name": "@meltwater/mlabs-health",
+  "version": "0.0.0",
+  "description": "Health monitor for microservices.",
   "main": "./dist/index.js",
   "module": "./index.js",
   "keywords": [
     "meltwater",
     "node"
   ],
-  "homepage": "https://github.com/meltwater/makenew-node-lib",
-  "bugs": "https://github.com/meltwater/makenew-node-lib/issues",
-  "repository": "meltwater/makenew-node-lib",
+  "homepage": "https://github.com/meltwater/mlabs-health",
+  "bugs": "https://github.com/meltwater/mlabs-health/issues",
+  "repository": "meltwater/mlabs-health",
   "license": "SEE LICENSE IN LICENSE.txt",
   "author": {
     "name": "Evan Sosenko",
