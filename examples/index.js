@@ -6,10 +6,10 @@ import path from 'path'
 import camelcase from 'camelcase'
 import createLogger from '@meltwater/mlabs-logger'
 
-import isTrue from './is-true'
+import check from './check'
 
-export const examples = {
-  isTrue
+const examples = {
+  check
 }
 
 const envOptions = env => Object.assign.apply({}, [{}, ...[
