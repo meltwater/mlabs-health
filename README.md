@@ -2,6 +2,7 @@
 
 [![npm](https://img.shields.io/badge/npm-%40meltwater%2Fmlabs--health-blue.svg)](https://www.npmjs.com/package/@meltwater/mlabs-health)
 [![github](https://img.shields.io/badge/github-repo-blue.svg)](https://github.com/meltwater/mlabs-health)
+[![docs](https://img.shields.io/badge/docs-master-green.svg)](https://github.com/meltwater/mlabs-health/tree/master/docs)
 [![Codecov](https://img.shields.io/codecov/c/token/rSi1zWW7qN/github/meltwater/mlabs-health.svg)](https://codecov.io/gh/meltwater/mlabs-health)
 [![CircleCI](https://circleci.com/gh/meltwater/mlabs-health.svg?style=shield&circle-token=747960c8b18cc596c2afbdf0f3d1fac4ebf8ab37)](https://circleci.com/gh/meltwater/mlabs-health)
 
@@ -20,6 +21,8 @@ $ yarn add @meltwater/mlabs-health
 [yarn]: https://yarnpkg.com/
 
 ## Usage
+
+**See the complete [API documentation](./docs).**
 
 This package provides an async function which checks if its argument is true.
 
@@ -109,6 +112,22 @@ $ yarn run
 
 #### Examples
 
+##### Configuration
+
+Set required and optional configuration options in `examples/local.json`, e.g.,
+
+```json
+{
+  "logLevel": "debug"
+}
+```
+
+or override any options with the corresponding environment variable:
+
+  - `LOG_LEVEL` (optional)
+
+##### Running Locally
+
 Run provided examples with, e.g.,
 
 ```
@@ -121,11 +140,39 @@ or more compactly with, e.g.,
 $ yarn example is-true | yarn bunyan
 ```
 
-##### Requirements
+Pass arguments to examples with
 
-All examples use the following environment variables:
+```
+$ yarn example is-true false | yarn bunyan
+```
 
-  - `LOG_LEVEL` (optional)
+In bash or zsh, you may define a convenience function with
+
+```
+$ function yrx () { yarn run example $@ | yarn run bunyan; }
+```
+
+##### Importing
+
+All examples are included with this package,
+create and run one with
+
+```js
+import { createExample } from '@meltwater/mlabs-health'
+
+// createExample(exampleName, options)(...args)
+createExample('is-true')().catch(err => { console.error(err) })
+```
+
+or import them directly with
+
+```js
+import { examples } from '@meltwater/mlabs-health'
+
+const isTrue = examples.isTrue()
+
+isTrue().then(data => { console.log(data) }).catch(err => { console.error(err) })
+```
 
 #### Production Build
 

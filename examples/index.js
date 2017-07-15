@@ -1,20 +1,31 @@
 import 'source-map-support/register'
 
 import fs from 'fs'
+import path from 'path'
 
 import camelcase from 'camelcase'
 import createLogger from '@meltwater/mlabs-logger'
 
 import isTrue from './is-true'
 
-const examples = {
+export const examples = {
   isTrue
 }
 
-const runExample = async (name, {
+const envOptions = env => Object.assign.apply({}, [{}, ...[
+  'LOG_LEVEL'
+].filter(k => env[k] !== undefined).map(k => ({[camelcase(k)]: env[k]}))])
+
+const localOptions = local => (
+  fs.existsSync(local)
+    ? JSON.parse(fs.readFileSync(local))
+    : {}
+)
+
+const createExample = (name, {
   log = createLogger({name}),
   ...options
-} = {}) => {
+} = {}) => async (...args) => {
   try {
     if (!name) throw new Error('Must specify example name as first argument.')
 
@@ -25,7 +36,7 @@ const runExample = async (name, {
     }
 
     log.info('Example: Start')
-    const data = await example({...options, log})()
+    const data = await example({...options, log})(...args)
     log.info({data}, 'Example: Success')
     return data
   } catch (err) {
@@ -35,14 +46,17 @@ const runExample = async (name, {
 }
 
 if (require.main === module) {
+  const local = path.resolve(__dirname, 'local.json')
   const { name } = JSON.parse(fs.readFileSync('package.json'))
   const example = process.argv.slice(2)[0]
-  const log = createLogger({name, example, level: process.env.LOG_LEVEL})
-  const options = {}
-  runExample(example, {...options, log}).catch(() => {
+  const args = process.argv.slice(3)
+  const options = {...localOptions(local), ...envOptions(process.env)}
+  const level = options.logLevel || 'info'
+  const log = createLogger({name, example, level})
+  createExample(example, {...options, log})(...args).catch(() => {
     log.fatal('Example: Fatal')
     process.exit(1)
   })
 }
 
-export default runExample
+export default createExample
