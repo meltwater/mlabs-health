@@ -7,9 +7,11 @@ import camelcase from 'camelcase'
 import createLogger from '@meltwater/mlabs-logger'
 
 import check from './check'
+import events from './events'
 
 const examples = {
-  check
+  check,
+  events
 }
 
 const envOptions = env => Object.assign.apply({}, [{}, ...[
