@@ -45,8 +45,8 @@
     arrify "^1.0.1"
 
 "@meltwater/mlabs-logger@^2.0.0":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@meltwater/mlabs-logger/-/mlabs-logger-2.0.2.tgz#4ad81639b852571c439a4540af793f5ff5930ad3"
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@meltwater/mlabs-logger/-/mlabs-logger-2.0.3.tgz#a3e4784de96b9a1af9a00d3b74c9995b8ea5cbde"
   dependencies:
     bunyan "^1.8.5"
     camelcase "^4.1.0"
