@@ -8,10 +8,12 @@ import createLogger from '@meltwater/mlabs-logger'
 
 import check from './check'
 import events from './events'
+import observables from './observables'
 
 const examples = {
   check,
-  events
+  events,
+  observables
 }
 
 const envOptions = env => Object.assign.apply({}, [{}, ...[
