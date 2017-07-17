@@ -1,11 +1,10 @@
-import { createHealthCheck } from '../lib'
-import createHealthEmitter from '../lib/events'
+import { createHealthCheck, createHealthEvents } from '../lib'
 
 export default ({log}) => async () => {
   let go = true
   let healthy = null
   const healthCheck = createHealthCheck(true)
-  const { event, emitter, emit } = createHealthEmitter(healthCheck)
+  const { event, emitter, emit } = createHealthEvents(healthCheck)
   emitter.on(event, health => {
     log.debug({health})
     healthy = health.healthy
