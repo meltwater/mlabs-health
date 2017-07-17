@@ -6,7 +6,7 @@ import {
 } from '../lib'
 
 export default ({log}) => async () => {
-  const healthCheck = createHealthCheck(h => h)
+  const healthCheck = createHealthCheck(x => x, {cache: null})
   const events = createHealthEvents(healthCheck)
   const { status } = createHealthObservables(events)
   const currentStatus = createValueFromObservable(status)
