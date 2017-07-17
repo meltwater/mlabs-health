@@ -90,8 +90,10 @@
   },
   "dependencies": {
     "@meltwater/mlabs-logger": "^2.0.0",
+    "@reactivex/rxjs": "^5.4.2",
     "cache-manager": "^2.4.0",
     "camelcase": "^4.1.0",
+    "ramda": "^0.24.1",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
