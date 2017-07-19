@@ -8,11 +8,13 @@ import createLogger from '@meltwater/mlabs-logger'
 
 import check from './check'
 import events from './events'
+import monitor from './monitor'
 import observables from './observables'
 
 const examples = {
   check,
   events,
+  monitor,
   observables
 }
 
