@@ -27,7 +27,7 @@ export default ({log}) => async (availability = 0.8) => {
     log
   }))
 
-  app.use('/', (req, res, next) => {
+  app.get('/', (req, res, next) => {
     res.send(`
       <!doctype html>
       <html lang="en">
