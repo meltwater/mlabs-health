@@ -93,6 +93,7 @@
     "@reactivex/rxjs": "^5.4.2",
     "cache-manager": "^2.4.0",
     "camelcase": "^4.1.0",
+    "express": "^4.15.3",
     "ramda": "^0.24.1",
     "uuid": "^3.1.0"
   },
@@ -103,7 +104,6 @@
     "babel-preset-stage-3": "^6.17.0",
     "bunyan": "^1.8.10",
     "del-cli": "^1.0.0",
-    "express": "^4.15.3",
     "gulp": "^3.9.1",
     "gulp-cli": "^1.2.2",
     "gulp-jsonlint": "^1.1.2",
