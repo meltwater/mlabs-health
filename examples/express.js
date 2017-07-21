@@ -1,3 +1,6 @@
+import http from 'http'
+import { promisify } from 'util'
+
 import express from 'express'
 
 import {
@@ -50,7 +53,26 @@ export default ({log}) => async (availability = 0.8) => {
 
   const port = 3000
   const host = 'localhost'
-  app.listen(port, () => {
-    log.info({port, host}, `Server: http://${host}:${port}`)
-  })
+  const listen = promisify((...args) => app.listen(...args))
+  await listen(port)
+  log.info({port, host}, `Server: http://${host}:${port}`)
+
+  http.get[promisify.custom] = options => {
+    return new Promise((resolve, reject) => {
+      http.get(options, response => {
+        response.end = new Promise(resolve => response.on('end', resolve))
+        resolve(response)
+      }).on('error', reject)
+    })
+  }
+  const get = promisify(http.get)
+
+  while (true) {
+    await new Promise(resolve => setTimeout(resolve, 2000))
+    try {
+      await get(`http://${host}:${port}/health`)
+    } catch (err) {
+      log.warn({err}, 'Health: Fail')
+    }
+  }
 }

@@ -12,7 +12,6 @@ import express from './express'
 import monitor from './monitor'
 import observables from './observables'
 
-// TODO: Add more examples.
 const examples = {
   check,
   events,
