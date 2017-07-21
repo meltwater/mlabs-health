@@ -10,10 +10,10 @@ export default ({log}) => async () => {
   const events = createHealthEvents(healthCheck)
   const { status } = createHealthObservables(events)
   const currentStatus = createValueFromObservable(status)
-  const { emit } = events
 
   status.subscribe(status => { log.debug({status}) })
 
+  const { emit } = events
   await emit(true)
   await emit(true)
   await emit(false)

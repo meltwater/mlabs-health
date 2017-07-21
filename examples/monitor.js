@@ -5,24 +5,22 @@ import {
 
 export default ({log}) => async () => {
   const monitor = createHealthMonitor({
-    a: createHealthCheck(x => x, {cache: null}),
-    b: createHealthCheck(x => x, {cache: null})
-  }, {
-    createHealthCheck: x => x
-  })
+    foo: x => x,
+    bar: x => x
+  }, {createHealthCheck: check => createHealthCheck(check, {cache: null})})
 
-  const a = monitor.a.events.emit
-  const b = monitor.b.events.emit
+  const foo = monitor.foo.events.emit
+  const bar = monitor.bar.events.emit
 
-  await a(true)
-  await b(true)
-  await a(true)
+  await foo(true)
+  await bar(true)
+  await foo(true)
 
   log.debug({status: monitor.health.status()})
 
-  await a(true)
-  await a(false)
-  await a(true)
+  await foo(true)
+  await foo(false)
+  await foo(true)
 
   return monitor.health.status()
 }
