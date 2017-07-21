@@ -67,7 +67,7 @@ export default ({log}) => async (availability = 0.8) => {
   const get = promisify(http.get)
 
   while (true) {
-    await new Promise(resolve => setTimeout(resolve, 2000))
+    await new Promise(resolve => setTimeout(resolve, 1000))
     try {
       await get(`http://${host}:${port}/health`)
     } catch (err) {
