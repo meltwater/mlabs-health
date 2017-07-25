@@ -6,6 +6,7 @@ import express from 'express'
 import {
   createHealthy,
   createHealthMonitor,
+  healthLogging,
   expressStatusRouter,
   expressHealthRouter
 } from '../lib'
@@ -14,8 +15,10 @@ export default ({log}) => async (availability = 0.8) => {
   const unstable = () => Math.random() < parseFloat(availability)
   const healthMonitor = createHealthMonitor(
     {foo: unstable, bar: unstable},
-    {ttl: 2, graceChecks: 300}
+    {ttl: 2}
   )
+
+  healthLogging({healthMonitor, log})
 
   const app = express()
 
