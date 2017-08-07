@@ -12,17 +12,19 @@ Health monitor for microservices.
 
 ## Installation
 
-Add this as a dependency to your project using [yarn] with
+Add this as a dependency to your project using [Yarn] with
 
 ```
 $ yarn add @meltwater/mlabs-health
 ```
 
-[yarn]: https://yarnpkg.com/
+[Yarn]: https://yarnpkg.com/
 
 ## Usage
 
-**See the complete [API documentation](./docs).**
+<!--- TODO: Update usage example for added module(s). -->
+
+**See the complete [API documentation](./docs) and [working examples](./examples).**
 
 This package provides an async function which checks if its argument is true.
 
@@ -34,7 +36,7 @@ const logTrue = async () => {
   console.log(trueValue)
 }
 
-logTrue()
+logTrue().catch(err => { console.log(err) })
 // true
 ```
 
@@ -56,7 +58,7 @@ $ yarn run watch:test
 
 ## Development and Testing
 
-### Source Code
+### Source code
 
 The [mlabs-health source] is hosted on GitHub.
 Clone the project with
@@ -69,7 +71,8 @@ $ git clone git@github.com:meltwater/mlabs-health.git
 
 ### Requirements
 
-You will need [Node.js] with [yarn].
+You will need [Node.js] with [Yarn]
+and a [Node.js debugging] client.
 
 Be sure that all commands run under the correct Node version, e.g.,
 if using [nvm], install the correct version with
@@ -78,7 +81,7 @@ if using [nvm], install the correct version with
 $ nvm install
 ```
 
-and set the active version for each shell session with
+Set the active version for each shell session with
 
 ```
 $ nvm use
@@ -91,16 +94,24 @@ $ yarn
 ```
 
 [Node.js]: https://nodejs.org/
+[Node.js debugging]: https://nodejs.org/en/docs/guides/debugging-getting-started/
+
 [nvm]: https://github.com/creationix/nvm
 
 #### CircleCI
 
-The following environment variables must be set on CircleCI:
+_CircleCI should already be configured: this section is for reference only._
+
+The following environment variables must be set on [CircleCI]:
 
 - `NPM_TOKEN`: npm token for installing and publishing private packages.
 - `CODECOV_TOKEN`: Codecov token for uploading coverage reports (optional).
 
-### Tasks
+These may be set manually or by running the script `./circleci/envvars.sh`.
+
+[CircleCI]: https://circleci.com/
+
+### Development tasks
 
 Primary development tasks are defined under `scripts` in `package.json`
 and available via `yarn run`.
@@ -110,71 +121,7 @@ View them with
 $ yarn run
 ```
 
-#### Examples
-
-##### Configuration
-
-Set required and optional configuration options in `examples/local.json`, e.g.,
-
-```json
-{
-  "logLevel": "debug"
-}
-```
-
-or override any options with the corresponding environment variable:
-
-  - `LOG_LEVEL` (optional)
-
-##### Running Locally
-
-Run provided examples with, e.g.,
-
-```
-$ yarn run example -- is-true | yarn run bunyan
-```
-
-or more compactly with, e.g.,
-
-```
-$ yarn example is-true | yarn bunyan
-```
-
-Pass arguments to examples with
-
-```
-$ yarn example is-true false | yarn bunyan
-```
-
-In bash or zsh, you may define a convenience function with
-
-```
-$ function yrx () { yarn run example $@ | yarn run bunyan; }
-```
-
-##### Importing
-
-All examples are included with this package,
-create and run one with
-
-```js
-import { createExample } from '@meltwater/mlabs-health'
-
-// createExample(exampleName, options)(...args)
-createExample('is-true')().catch(err => { console.error(err) })
-```
-
-or import them directly with
-
-```js
-import { examples } from '@meltwater/mlabs-health'
-
-const isTrue = examples.isTrue()
-
-isTrue().then(data => { console.log(data) }).catch(err => { console.error(err) })
-```
-
-#### Production Build
+#### Production build
 
 Lint, test, and transpile the production build to `dist` with
 
@@ -184,12 +131,24 @@ $ yarn run dist
 
 ##### Publishing a new release
 
+_Update the CHANGELOG before each new release._
+
 Release a new version using [`npm version`][npm version].
 This will run all tests, update the version number,
 create and push a tagged commit,
 and trigger CircleCI to publish the new version to npm.
 
 [npm version]: https://docs.npmjs.com/cli/version
+
+#### Examples
+
+**See the [full documentation on using examples](./examples).**
+
+View all examples with
+
+```
+$ yarn run example
+```
 
 #### Linting
 
@@ -221,8 +180,15 @@ $ yarn run format
 
 #### Tests
 
-Unit testing is handled by [AVA] and coverage is reported by [Istanbul].
-Watch and run tests on change with
+Unit and integration testing is handled by [AVA]
+and coverage is reported by [Istanbul] and uploaded to [Codecov].
+
+- Test files end in `.spec.js`.
+- Unit tests are placed under `lib` alongside the tested module.
+- Integration tests are placed in `test`.
+- Static files used in tests are placed in `fixtures`.
+
+Watch and run tests on changes with
 
 ```
 $ yarn run watch:test
@@ -236,7 +202,23 @@ $ yarn run report
 
 An HTML version will be saved in `coverage`.
 
+##### Debugging tests
+
+Create a breakpoint by adding the statement `debugger` to the test
+and start a debug session with, e.g.,
+
+```
+$ yarn run ava:inspect lib/true.spec.js
+```
+
+Watch and restart the debugging session on changes with
+
+```
+$ yarn run ava:inspect:watch lib/true.spec.js
+```
+
 [AVA]: https://github.com/avajs/ava
+[Codecov]: https://codecov.io/
 [Istanbul]: https://istanbul.js.org/
 
 ## Contributing

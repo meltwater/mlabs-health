@@ -1,5 +1,5 @@
 import http from 'http'
-import { promisify } from 'util'
+import promisify from 'util.promisify'
 
 import express from 'express'
 

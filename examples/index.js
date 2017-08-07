@@ -3,7 +3,7 @@ import 'source-map-support/register'
 import fs from 'fs'
 import path from 'path'
 
-import camelcase from 'camelcase'
+import { camelCase, paramCase } from 'change-case'
 import createLogger from '@meltwater/mlabs-logger'
 
 import check from './check'
@@ -20,9 +20,14 @@ const examples = {
   observables
 }
 
-const envOptions = env => Object.assign.apply({}, [{}, ...[
+export const envVars = [
   'LOG_LEVEL'
-].filter(k => env[k] !== undefined).map(k => ({[camelcase(k)]: env[k]}))])
+]
+
+const envOptions = env => Object.assign.apply({}, [{},
+  ...envVars.filter(k => env[k] !== undefined)
+    .map(k => ({[camelCase(k)]: env[k]}))]
+)
 
 const localOptions = local => (
   fs.existsSync(local)
@@ -37,7 +42,7 @@ const createExample = (name, {
   try {
     if (!name) throw new Error('Must specify example name as first argument.')
 
-    const example = examples[camelcase(name)]
+    const example = examples[camelCase(name)]
 
     if (typeof example !== 'function') {
       throw new Error(`Example ${name} not found.`)
@@ -61,6 +66,17 @@ if (require.main === module) {
   const options = {...localOptions(local), ...envOptions(process.env)}
   const level = options.logLevel || 'info'
   const log = createLogger({name, example, level})
+
+  if (!example) {
+    console.log()
+    console.log('Runnable examples:')
+    Object.keys(examples).sort().forEach(e => {
+      console.log('  ', paramCase(e))
+    })
+    console.log()
+    process.exit(0)
+  }
+
   createExample(example, {...options, log})(...args).catch(() => {
     log.fatal('Example: Fatal')
     process.exit(1)

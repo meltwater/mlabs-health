@@ -7,10 +7,17 @@ references:
     steps:
       - checkout
       - run:
-         name: Save build versions
-         command: |
-           echo "node: ${NODE_VERSION}" >> .versions
-           echo "yarn: ${YARN_VERSION}" >> .versions
+          name: Install CA certificates
+          command: |
+            if [[ -f /sbin/apk ]]; then
+              echo "alpine: $(cat /etc/alpine-release)" >> .versions
+              apk add --no-cache ca-certificates
+            fi
+      - run:
+          name: Save build versions
+          command: |
+            echo "node: ${NODE_VERSION}" >> .versions
+            echo "yarn: ${YARN_VERSION}" >> .versions
       - restore_cache:
           key: yarn-cache
       - restore_cache:
@@ -32,7 +39,12 @@ references:
           paths: node_modules
       - run:
           name: Build package
-          command: yarn run package
+          command: |
+            if [[ "${PUBLISH}" == 'true' ]]; then
+              yarn run package
+            else
+              yarn run dist
+            fi
       - run:
           name: Codecov
           command: |
@@ -43,19 +55,8 @@ references:
       - deploy:
           name: Publish package
           command: |
-            if [[ "${PUBLISH}" == 'true' && \
-              ("${CIRCLE_BRANCH}" == 'master' || "${CIRCLE_BRANCH}" =~ ^v[0-9]) \
-            ]]; then
-              apt-get update
-              apt-get install -y jq
-              pkg_name=$(jq -r '.name' package.json)
-              pkg_version=$(jq -r '.version' package.json)
-              if [[ "$(git log -1 --pretty='%s')" == "${pkg_version}" ]]; then
-                if [[ -z "$(npm view ${pkg_name}@${pkg_version})" ]]; then
-                  pkg_files=(*.tgz)
-                  npm publish $(echo $pkg_files)
-                fi
-              fi
+            if [[ "${PUBLISH}" == 'true' ]]; then
+              .circleci/publish.sh
             fi
 
 jobs:
@@ -65,11 +66,27 @@ jobs:
     docker:
       - image: node:8
     <<: *build
+  node-8-alpine:
+    docker:
+      - image: node:8-alpine
+    <<: *build
   node-7:
     docker:
       - image: node:7
     <<: *build
+  node-7-alpine:
+    docker:
+      - image: node:7
+    <<: *build
+  node-boron-alpine:
+    docker:
+      - image: node:7
+    <<: *build
   node-boron:
+    docker:
+      - image: node:boron
+    <<: *build
+  publish:
     environment:
       PUBLISH: 'true'
     docker:
@@ -81,8 +98,16 @@ workflows:
   default:
     jobs:
       - node-8
+      - node-8-alpine
       - node-7
-      - node-boron:
+      - node-7-alpine
+      - node-boron
+      - node-boron-alpine
+      - publish:
           requires:
             - node-8
+            - node-8-alpine
             - node-7
+            - node-7-alpine
+            - node-boron
+            - node-boron-alpine

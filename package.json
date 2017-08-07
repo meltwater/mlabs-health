@@ -20,8 +20,8 @@
     "yarn.lock",
     "index.js",
     "lib",
+    "data",
     "examples",
-    "coverage",
     "dist",
     "docs"
   ],
@@ -37,14 +37,19 @@
     "dist": "yarn run build",
     "predist": "yarn test",
     "package": "npm pack",
-    "prepackage": "yarn run dist",
+    "prepackage": "yarn run build",
     "preversion": "yarn run dist",
     "postversion": "git push && git push --tags",
     "example": "babel-node examples",
-    "format": "standard --fix",
-    "report": "nyc report",
+    "example:watch": "babel-watch --watch examples/local.json examples",
+    "example:inspect": "babel-node --inspect examples",
+    "example:inspect:watch": "nodemon ./node_modules/.bin/babel-node --inspect examples",
+    "ava:inspect": "node --inspect node_modules/ava/profile",
+    "ava:inspect:watch": "nodemon --inspect node_modules/ava/profile",
     "watch": "gulp watch",
-    "watch:test": "ava --watch"
+    "watch:test": "ava --watch",
+    "format": "standard --fix",
+    "report": "nyc report"
   },
   "babel": {
     "presets": [
@@ -92,9 +97,10 @@
     "@meltwater/mlabs-logger": "^2.0.3",
     "@reactivex/rxjs": "^5.4.2",
     "cache-manager": "^2.4.0",
-    "camelcase": "^4.1.0",
+    "change-case": "^3.0.1",
     "express": "^4.15.3",
     "ramda": "^0.24.1",
+    "util.promisify": "^1.0.0",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
@@ -102,6 +108,7 @@
     "babel-cli": "^6.18.0",
     "babel-preset-env": "^1.1.4",
     "babel-preset-stage-3": "^6.17.0",
+    "babel-watch": "^2.0.7",
     "bunyan": "^1.8.10",
     "del-cli": "^1.0.0",
     "gulp": "^3.9.1",
@@ -112,6 +119,7 @@
     "gulp-standard": "^10.0.0",
     "gulp-watch": "^4.3.10",
     "gulplog": "^1.0.0",
+    "nodemon": "^1.11.0",
     "npm-run-all": "^4.0.0",
     "nyc": "^11.0.2",
     "source-map-support": "^0.4.15",
