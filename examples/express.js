@@ -2,19 +2,12 @@ import http from 'http'
 import promisify from 'util.promisify'
 
 import express from 'express'
-import {
-  complement,
-  compose,
-  filter,
-  identity,
-  isNil,
-  keys,
-  map,
-  prop
-} from 'ramda'
+import { compose } from 'ramda'
 
 import {
   createHealthy,
+  groupHealthy,
+  createHealthyStatus,
   createHealthMonitor,
   healthLogging,
   expressHealthy,
@@ -32,9 +25,10 @@ export default ({log}) => async (availability = 0.8) => {
   healthLogging({healthMonitor, log})
 
   const app = express()
+  const healthy = createHealthy()
 
   app.use('/health', expressHealthRouter({
-    healthy: createHealthy(),
+    healthy,
     healthMonitor,
     log
   }))
@@ -45,21 +39,11 @@ export default ({log}) => async (availability = 0.8) => {
   }))
 
   app.use('/api/v1/health', expressHealthy({log}))
+
+  const healthyStatus = createHealthyStatus({healthy})
   app.use('/api/v1/status', (req, res, next) => {
-    try {
-      const status = compose(s => s(), prop('status'))
-      const healths = compose(
-        map(createHealthy()),
-        filter(complement(isNil)),
-        map(status)
-      )(healthMonitor)
-      res.status(200).send(map(keys, {
-        healthy: filter(identity)(healths),
-        unhealthy: filter(complement(identity))(healths)
-      }))
-    } catch (err) {
-      next(err)
-    }
+    const status = compose(groupHealthy, healthyStatus)
+    res.status(200).send(status(healthMonitor))
   })
 
   app.get('/', (req, res, next) => {
