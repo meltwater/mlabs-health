@@ -45,7 +45,7 @@ export default ({log}) => async (availability = 0.8) => {
   }))
 
   app.use('/api/v1/health', expressHealthy({log}))
-  app.use('/api/v1/status', async (req, res, next) => {
+  app.use('/api/v1/status', (req, res, next) => {
     try {
       const status = compose(s => s(), prop('status'))
       const healths = compose(
