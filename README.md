@@ -12,12 +12,19 @@ Health monitor for microservices.
 
 ## Installation
 
-Add this as a dependency to your project using [Yarn] with
+Add this as a dependency to your project using [npm] with
+
+```
+$ npm install @meltwater/mlabs-health
+```
+
+or using [Yarn] with
 
 ```
 $ yarn add @meltwater/mlabs-health
 ```
 
+[npm]: https://www.npmjs.com/
 [Yarn]: https://yarnpkg.com/
 
 ## Usage
@@ -71,7 +78,7 @@ $ git clone git@github.com:meltwater/mlabs-health.git
 
 ### Requirements
 
-You will need [Node.js] with [Yarn]
+You will need [Node.js] with [npm], [Yarn],
 and a [Node.js debugging] client.
 
 Be sure that all commands run under the correct Node version, e.g.,
@@ -95,7 +102,7 @@ $ yarn
 
 [Node.js]: https://nodejs.org/
 [Node.js debugging]: https://nodejs.org/en/docs/guides/debugging-getting-started/
-
+[npm]: https://www.npmjs.com/
 [nvm]: https://github.com/creationix/nvm
 
 #### CircleCI
@@ -104,9 +111,9 @@ _CircleCI should already be configured: this section is for reference only._
 
 The following environment variables must be set on [CircleCI]:
 
-- `NPM_TOKEN`: npm token for installing and publishing private packages.
+- `NPM_TOKEN`: npm token for installing and publishing packages.
 - `NPM_TEAM`: npm team to grant read-only package access
-  (optional, format `org:team`, defaults to `meltwater:read-only`).
+  (format `org:team`, optional).
 - `CODECOV_TOKEN`: Codecov token for uploading coverage reports (optional).
 
 These may be set manually or by running the script `./circleci/envvars.sh`.

@@ -3,8 +3,8 @@ import 'source-map-support/register'
 import fs from 'fs'
 import path from 'path'
 
+import { createLogger as createBunyan, stdSerializers } from 'bunyan'
 import { camelCase, paramCase } from 'change-case'
-import createLogger from '@meltwater/mlabs-logger'
 
 import check from './check'
 import events from './events'
@@ -20,9 +20,11 @@ const examples = {
   observables
 }
 
-export const envVars = [
+const envVars = [
   'LOG_LEVEL'
 ]
+
+const defaultOptions = {}
 
 const envOptions = env => Object.assign.apply({}, [{},
   ...envVars.filter(k => env[k] !== undefined)
@@ -32,8 +34,13 @@ const envOptions = env => Object.assign.apply({}, [{},
 const localOptions = local => (
   fs.existsSync(local)
     ? JSON.parse(fs.readFileSync(local))
-    : {}
+    : defaultOptions
 )
+
+const createLogger = ({serializers, ...options}) => createBunyan({
+  serializers: {err: stdSerializers.err, ...serializers},
+  ...options
+})
 
 const createExample = (name, {
   log = createLogger({name}),

@@ -92,7 +92,7 @@ All examples are included with this package as importable modules.
 
 _Imported examples are not supported as a stable API._
 
-_Some examples may use devDependencies
+_Some examples may use devDependencies, e.g., bunyan,
 which need to be installed as dependencies
 by any package which imports them._
 
@@ -110,7 +110,7 @@ createExample('is-true')()
 or import them directly with
 
 ```js
-import createLogger from '@meltwater/mlabs-logger'
+import createLogger from 'bunyan'
 import { examples } from '@meltwater/makenew-node-lib'
 
 const isTrue = examples.isTrue({log: createLogger()})
@@ -155,7 +155,7 @@ isTrue()
 
    ```js
    /* examples/index.js */
-   export const envVars = [
+   const envVars = [
      'LOG_LEVEL',
      'FOO_API',
      // ...

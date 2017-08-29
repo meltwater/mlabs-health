@@ -5,19 +5,22 @@ references:
   build: &build
     working_directory: ~/build
     steps:
-      - checkout
       - run:
-          name: Install CA certificates
+          name: Install Alpine Linux build dependencies
           command: |
             if [[ -f /sbin/apk ]]; then
-              echo "alpine: $(cat /etc/alpine-release)" >> .versions
-              apk add --no-cache ca-certificates
+              apk add --no-cache ca-certificates git openssh-client
             fi
+      - checkout
       - run:
           name: Save build versions
           command: |
+          command: |
             echo "node: ${NODE_VERSION}" >> .versions
             echo "yarn: ${YARN_VERSION}" >> .versions
+            if [[ -f /sbin/apk ]]; then
+              echo "alpine: $(cat /etc/alpine-release)" >> .versions
+            fi
       - restore_cache:
           key: yarn-cache
       - restore_cache:
@@ -89,7 +92,6 @@ jobs:
   publish:
     environment:
       PUBLISH: 'true'
-      DEFAULT_NPM_TEAM: 'meltwater:read-only'
     docker:
       - image: node:boron
     <<: *build
@@ -105,6 +107,9 @@ workflows:
       - node-boron
       - node-boron-alpine
       - publish:
+          filters:
+            branches:
+              only: /^(v[0-9]|master)/
           requires:
             - node-8
             - node-8-alpine
