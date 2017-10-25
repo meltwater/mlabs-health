@@ -16,7 +16,7 @@ Set required and optional configuration options in `examples/local.json`, e.g.,
 
 Override any option with the corresponding environment variable:
 
-  - `LOG_LEVEL` (optional)
+- `LOG_LEVEL` (optional)
 
 ### Running examples with arguments
 
@@ -92,7 +92,7 @@ All examples are included with this package as importable modules.
 
 _Imported examples are not supported as a stable API._
 
-_Some examples may use devDependencies
+_Examples use some devDependencies
 which need to be installed as dependencies
 by any package which imports them._
 
@@ -179,6 +179,6 @@ isTrue()
 
    Override any option with the corresponding environment variable:
 
-     - QUERY_API
-     - ...
+   - QUERY_API
+   - ...
    ````

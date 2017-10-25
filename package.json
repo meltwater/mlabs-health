@@ -97,18 +97,20 @@
     "@meltwater/mlabs-logger": "^2.0.3",
     "@reactivex/rxjs": "^5.4.2",
     "cache-manager": "^2.4.0",
-    "change-case": "^3.0.1",
     "express": "^4.15.3",
     "ramda": "^0.24.1",
     "util.promisify": "^1.0.0",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
-    "ava": "^0.22.0",
+    "@meltwater/examplr": "^1.0.0",
+    "ava": "^0.23.0",
     "babel-cli": "^6.18.0",
+    "babel-core": "^6.26.0",
     "babel-preset-env": "^1.1.4",
     "babel-preset-stage-3": "^6.17.0",
     "babel-watch": "^2.0.7",
+    "bunyan": "^1.8.12",
     "del-cli": "^1.0.0",
     "gulp": "^3.9.1",
     "gulp-cli": "^1.2.2",
@@ -121,7 +123,7 @@
     "nodemon": "^1.11.0",
     "npm-run-all": "^4.0.0",
     "nyc": "^11.0.2",
-    "source-map-support": "^0.4.15",
+    "source-map-support": "^0.5.0",
     "standard": "^10.0.2",
     "supertest": "^3.0.0"
   }

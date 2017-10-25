@@ -14,7 +14,7 @@ help () {
        'the corresponding environment variable (prefixed with CI_).'
   echo 'Optionally, set NONINTERACTIVE=true to skip all prompts.'
   echo
-  echo 'For example, assuming CIRCLE_TOKEN was set in your environment,' \
+  echo 'For example, assuming CIRCLE_TOKEN is set in your environment,' \
        'update NPM_TOKEN with'
   echo
   echo '    $ NONINTERACTIVE=true CI_NPM_TOKEN=token .circleci/envvars.sh'
@@ -42,11 +42,8 @@ help_codecov () {
        "https://codecov.io/gh/${circle_repo}/settings"
 }
 
-command -v jq > /dev/null \
-  || echo 'jq required: https://stedolan.github.io/jq/'
-
-command -v http > /dev/null \
-  || echo 'HTTPie required: https://httpie.org/'
+command -v jq >/dev/null 2>&1 || \
+  (echo 'jq required: https://stedolan.github.io/jq/' && exit 2)
 
 envvar () {
   name=$1
@@ -57,9 +54,12 @@ envvar () {
       echo 'Error: missing CircleCI token.'
       exit 2
     fi
-    http -a "${circle_token}:" \
-      "https://circleci.com/api/v1.1/project/github/${circle_repo}/envvar" \
-      name=$name value=$value
+
+    curl -X POST \
+      --header 'Content-Type: application/json' \
+      -u "${circle_token}:" \
+      -d '{"name": "'$name'", "value": "'$value'"}' \
+      "https://circleci.com/api/v1.1/project/github/${circle_repo}/envvar"
   fi
 }
 
