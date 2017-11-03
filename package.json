@@ -95,7 +95,6 @@
     "@reactivex/rxjs": "^5.4.2",
     "cache-manager": "^2.4.0",
     "ramda": "^0.24.1",
-    "util.promisify": "^1.0.0",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
