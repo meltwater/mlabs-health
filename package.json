@@ -118,7 +118,6 @@
     "npm-run-all": "^4.0.0",
     "nyc": "^11.0.2",
     "source-map-support": "^0.5.0",
-    "standard": "^10.0.2",
-    "supertest": "^3.0.0"
+    "standard": "^10.0.2"
   }
 }
