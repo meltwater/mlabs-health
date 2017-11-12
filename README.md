@@ -8,7 +8,7 @@
 
 ## Description
 
-Health monitor for microservices.
+Health monitor for Node microservices.
 
 ## Installation
 
@@ -29,22 +29,29 @@ $ yarn add @meltwater/mlabs-health
 
 ## Usage
 
-<!--- TODO: Update usage example for added module(s). -->
-
 **See the complete [API documentation](./docs) and [working examples](./examples).**
 
-This package provides an async function which checks if its argument is true.
+Create a health monitor from any supported type,
 
 ```js
-import isTrue from '@meltwater/mlabs-health'
+import { createHealthMonitor  } from '@meltwater/mlabs-health'
 
-const logTrue = async () => {
-  const trueValue = await isTrue(true)
-  console.log(trueValue)
+const monitor = createHealthMonitor({
+  foo: x => x,
+  bar: true,
+})
+
+const logStatus = async () => {
+  await Promise.all([
+    monitor.foo.events.emit(true),
+    monitor.foo.events.emit(false),
+    monitor.bar.events.emit()
+  ])
+
+  console.log(monitor.health.status())
 }
 
-logTrue().catch(err => { console.log(err) })
-// true
+logStatus().catch(err => { console.log(err) })
 ```
 
 ## Development Quickstart
