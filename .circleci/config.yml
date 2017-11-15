@@ -21,10 +21,11 @@ references:
             if [[ -f /sbin/apk ]]; then
               echo "alpine: $(cat /etc/alpine-release)" >> .versions
             fi
+            cat .versions
       - restore_cache:
           key: yarn-cache
       - restore_cache:
-          key: module-cache-{{ arch }}-{{ checksum ".versions" }}-{{ checksum "yarn.lock" }}
+          key: node-modules-{{ arch }}-{{ checksum ".versions" }}-{{ checksum "yarn.lock" }}
       - run:
           name: Set yarn cache
           command: yarn config set cache-folder $HOME/.yarn-cache
@@ -38,18 +39,18 @@ references:
           key: yarn-cache
           paths: $HOME/.yarn-cache
       - save_cache:
-          key: module-cache-{{ arch }}-{{ checksum ".versions" }}-{{ checksum "yarn.lock" }}
+          key: node-modules-{{ arch }}-{{ checksum ".versions" }}-{{ checksum "yarn.lock" }}
           paths: node_modules
       - run:
-          name: Build package
+          name: Test and build package
           command: |
             if [[ "${PUBLISH}" == 'true' ]]; then
-              yarn run package
+              yarn run build
             else
               yarn run dist
             fi
       - run:
-          name: Codecov
+          name: Upload coverage to Codecov
           command: |
             if [[ "${COVERAGE}" == 'true' && -n "${CODECOV_TOKEN}" ]]; then
               yarn global add codecov
@@ -63,6 +64,14 @@ references:
             fi
 
 jobs:
+  node:
+    docker:
+      - image: node
+    <<: *build
+  node-alpine:
+    docker:
+      - image: node:alpine
+    <<: *build
   node-carbon:
     environment:
       COVERAGE: 'true'
@@ -73,35 +82,27 @@ jobs:
     docker:
       - image: node:carbon-alpine
     <<: *build
-  node-boron:
-    docker:
-      - image: node:boron
-    <<: *build
-  node-boron-alpine:
-    docker:
-      - image: node:boron-alpine
-    <<: *build
   publish:
     environment:
       PUBLISH: 'true'
     docker:
-      - image: node:boron
+      - image: node:carbon
     <<: *build
 
 workflows:
   version: 2
   default:
     jobs:
+      - node
+      - node-alpine
       - node-carbon
       - node-carbon-alpine
-      - node-boron
-      - node-boron-alpine
       - publish:
           filters:
             branches:
               only: /^(v[0-9]|master)/
           requires:
+            - node
+            - node-alpine
             - node-carbon
             - node-carbon-alpine
-            - node-boron
-            - node-boron-alpine

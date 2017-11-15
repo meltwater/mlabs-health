@@ -2,8 +2,8 @@
   "name": "@meltwater/mlabs-health",
   "version": "0.6.2",
   "description": "Health monitor for microservices.",
-  "main": "./dist/index.js",
-  "module": "./index.js",
+  "main": "dist/index.js",
+  "module": "index.js",
   "keywords": [
     "meltwater",
     "node"
@@ -30,18 +30,16 @@
     "clean": "del dist",
     "build": "npm-run-all --parallel build:*",
     "prebuild": "yarn run clean",
-    "build:index": "babel --source-maps --out-dir ./dist ./index.js",
-    "build:lib": "babel --source-maps --ignore='*.spec.js' --out-dir ./dist/lib ./lib",
+    "build:index": "babel --source-maps --out-dir dist index.js",
+    "build:lib": "babel --source-maps --ignore='*.spec.js' --out-dir dist/lib lib",
     "dist": "yarn run build",
     "predist": "yarn test",
-    "package": "npm pack",
-    "prepackage": "yarn run build",
     "preversion": "yarn run dist",
     "postversion": "git push && git push --tags",
     "example": "babel-node examples",
     "example:watch": "babel-watch --watch examples/local.json examples",
     "example:inspect": "babel-node --inspect examples",
-    "example:inspect:watch": "nodemon ./node_modules/.bin/babel-node --inspect examples",
+    "example:inspect:watch": "nodemon node_modules/.bin/babel-node --inspect examples",
     "ava:inspect": "node --inspect node_modules/ava/profile",
     "ava:inspect:watch": "nodemon --inspect node_modules/ava/profile",
     "watch": "gulp watch",
@@ -50,6 +48,9 @@
     "report": "nyc report"
   },
   "babel": {
+    "plugins": [
+      "transform-object-rest-spread"
+    ],
     "presets": [
       [
         "env",
@@ -58,8 +59,7 @@
             "node": "current"
           }
         }
-      ],
-      "stage-3"
+      ]
     ]
   },
   "ava": {
@@ -89,7 +89,7 @@
     ]
   },
   "engines": {
-    "node": ">=6.9.5"
+    "node": ">=8.9.0"
   },
   "dependencies": {
     "@reactivex/rxjs": "^5.4.2",
@@ -99,11 +99,11 @@
     "uuid": "^3.1.0"
   },
   "devDependencies": {
-    "@meltwater/examplr": "^2.0.0",
+    "@meltwater/examplr": "^3.0.0",
     "ava": "^0.23.0",
     "babel-cli": "^6.18.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.1.4",
-    "babel-preset-stage-3": "^6.17.0",
     "babel-watch": "^2.0.7",
     "del-cli": "^1.0.0",
     "gulp": "^3.9.1",
@@ -115,9 +115,8 @@
     "gulp-watch": "^4.3.10",
     "gulplog": "^1.0.0",
     "nodemon": "^1.11.0",
-    "npm-run-all": "^4.0.0",
+    "npm-run-all": "^4.1.2",
     "nyc": "^11.0.2",
-    "source-map-support": "^0.5.0",
     "standard": "^10.0.2"
   }
 }
