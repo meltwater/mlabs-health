@@ -4,7 +4,10 @@
 
 ## Top-Level Exports
 
-- [`isTrue(check)`](#istruecheck)
+- [`createHealthMonitor(targets, options)`](#createhealthmonitortargets-options)
+- [`createHealthCheck(target)`](#createhealthchecktarget)
+- [`createHealthy(options)`](#createHealthyoptions)
+- [`healthLogging(options)`](#healthloggingoptions)
 
 ### Importing
 
@@ -12,32 +15,83 @@ Every function described above is a top-level export.
 You can import any of them like this:
 
 ```js
-import { isTrue } from '@meltwater/mlabs-health'
+import { createHealthMonitor } from '@meltwater/mlabs-health'
 ```
 
 ---
-### `isTrue(check)`
+### `createHealthMonitor(targets, options)`
 
-Checks if its argument is true.
+Creates a new health monitor.
 
 #### Arguments
 
-1. `check` (*any*): The thing to check.
+1. `targets` (*object*): Health checks to use.
+2. `options` (*object*):
+    - `delay`: Milliseconds before `health` emits first event.
+      Default: 0.
+    - `ttl`: Seconds to cache health check result.
+      Default: 1 minute.
+    - `cache`: Default [cache instance][node-cache-manager].
+      Default: an in memory cache with the above `ttl`.
+    - `strategy`: Health strategy for `health`.
+      Default: the all-healthy strategy.
+    - `createHealthCheck`: Function to wrap all targets with.
+      Default: the `createHealthCheck` function provided in this module.
 
 #### Returns
 
-(*boolean*): If `check` is `true`.
+(*object*): The health monitor.
 
-#### Example
+---
+### `createHealthCheck(target)`
 
-```js
-async () => {
-  const x = await isTrue(true)
-  x === true
-}
+Creates a health check for use by a health monitor.
 
-async () => {
-  const y = await isTrue('')
-  y === false
-}
-```
+1. `target` (*any*): Thing to convert to health check.
+2. `options` (*object*):
+    - `ttl`: Seconds to cache health check result.
+      Default: 1 minute.
+    - `cache`: Default [cache instance][node-cache-manager].
+      Default: an in memory cache with the above `ttl`.
+#### Returns
+
+(*function*): An asynchronous health check function.
+
+---
+### `createHealthy(options)`
+
+Creates a function which maps health status objects to a boolean healthy status.
+
+#### Arguments
+
+1. `options` (*object*):
+    - `minAvailability`: Minimum availability before unhealthy.
+      Default: 0.9.
+    - `minReliability`: Minimum reliability before unhealthy.
+      Default: 0.9.
+    - `maxDowntime`: Maximum downtime (in milliseconds) before unhealthy.
+      Default: 5 minutes.
+
+#### Returns
+
+(*function*): Function that maps status to boolean.
+
+---
+### `healthLogging(options)`
+
+Logs all events in the status stream
+for all health checks in the health monitor.
+
+#### Arguments
+
+1. `options` (*object*):
+    - `healthMonitor` (*object*): The health monitor to use.
+    - `log` (*object*): A [Bunyan] compatible logger.
+      Default: a new logger.
+
+#### Returns
+
+(*undefined*)
+
+[Bunyan]: https://github.com/trentm/node-bunyan
+[node-cache-manager]: https://github.com/BryanDonovan/node-cache-manager
