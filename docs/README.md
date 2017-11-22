@@ -53,6 +53,7 @@ Creates a health check for use by a health monitor.
       Default: 1 minute.
     - `cache` (*object*|*null*): Default [cache instance][node-cache-manager].
       Default: an in memory cache with the above `ttl`.
+
 #### Returns
 
 (*function*): An asynchronous health check function.
