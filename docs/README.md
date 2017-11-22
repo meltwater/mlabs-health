@@ -27,11 +27,11 @@ Creates a new health monitor.
 
 1. `targets` (*object*): Health checks to use.
 2. `options` (*object*):
-    - `delay`: Milliseconds before `health` emits first event.
+    - `delay` (*number*): Milliseconds before `health` emits first event.
       Default: 0.
-    - `ttl`: Seconds to cache health check result.
+    - `ttl` (*number*): Seconds to cache health check result.
       Default: 1 minute.
-    - `cache`: Default [cache instance][node-cache-manager].
+    - `cache` (*object*|*null*): Default [cache instance][node-cache-manager].
       Default: an in memory cache with the above `ttl`.
     - `strategy`: Health strategy for `health`.
       Default: the all-healthy strategy.
@@ -49,9 +49,9 @@ Creates a health check for use by a health monitor.
 
 1. `target` (*any*): Thing to convert to health check.
 2. `options` (*object*):
-    - `ttl`: Seconds to cache health check result.
+    - `ttl` (*number*): Seconds to cache health check result.
       Default: 1 minute.
-    - `cache`: Default [cache instance][node-cache-manager].
+    - `cache` (*object*|*null*): Default [cache instance][node-cache-manager].
       Default: an in memory cache with the above `ttl`.
 #### Returns
 
@@ -65,11 +65,11 @@ Creates a function which maps health status objects to a boolean healthy status.
 #### Arguments
 
 1. `options` (*object*):
-    - `minAvailability`: Minimum availability before unhealthy.
+    - `minAvailability` (*number*): Minimum availability before unhealthy.
       Default: 0.9.
-    - `minReliability`: Minimum reliability before unhealthy.
+    - `minReliability` (*number*): Minimum reliability before unhealthy.
       Default: 0.9.
-    - `maxDowntime`: Maximum downtime (in milliseconds) before unhealthy.
+    - `maxDowntime` (*number*): Maximum downtime (in milliseconds) before unhealthy.
       Default: 5 minutes.
 
 #### Returns
