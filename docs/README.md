@@ -6,7 +6,7 @@
 
 - [`createHealthMonitor(targets, options)`](#createhealthmonitortargets-options)
 - [`createHealthCheck(target)`](#createhealthchecktarget)
-- [`createHealthy(options)`](#createHealthyoptions)
+- [`createHealthy(options)`](#createhealthyoptions)
 - [`healthLogging(options)`](#healthloggingoptions)
 
 ### Importing
