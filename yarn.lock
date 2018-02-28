@@ -61,6 +61,13 @@
     change-case "^3.0.1"
     pino "^4.10.3"
 
+"@meltwater/phi@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@meltwater/phi/-/phi-2.0.0.tgz#705f85f3dfe92e4d8ec9aa17d851e41bd22365fb"
+  dependencies:
+    ramda "~0.25.0"
+    ramda-adjunct "~2.5.0"
+
 "@reactivex/rxjs@^5.4.2":
   version "5.5.6"
   resolved "https://registry.yarnpkg.com/@reactivex/rxjs/-/rxjs-5.5.6.tgz#6baf5dfd4f388d506dfe11902ea669e02f651c5f"
@@ -5102,7 +5109,11 @@ quick-format-unescaped@^1.1.2:
   dependencies:
     fast-safe-stringify "^1.0.8"
 
-ramda@^0.25.0:
+ramda-adjunct@~2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/ramda-adjunct/-/ramda-adjunct-2.5.0.tgz#50d7d74ca273731b05dcdda77d102bc57d7c1145"
+
+ramda@~0.25.0:
   version "0.25.0"
   resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.25.0.tgz#8fdf68231cffa90bc2f9460390a0cb74a29b29a9"
 

@@ -96,10 +96,10 @@
     "node": ">=8.9.0"
   },
   "dependencies": {
+    "@meltwater/phi": "^2.0.0",
     "@reactivex/rxjs": "^5.4.2",
     "bunyan": "^1.8.12",
     "cache-manager": "^2.4.0",
-    "ramda": "^0.25.0",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
