@@ -27,6 +27,8 @@ Creates a new health monitor.
 2. `options` (*object*):
     - `delay` (*number*): Milliseconds before `health` emits first event.
       Default: 0.
+    - `timeout` (*number*): Milliseconds before health check times out with error.
+      Default: 60000 (1 minute).
     - `ttl` (*number*): Seconds to cache health check result.
       Default: 1 minute.
     - `cache` (*object*|*null*): Default [cache instance][node-cache-manager].
@@ -47,6 +49,8 @@ Creates a health check for use by a health monitor.
 
 1. `target` (*any*): Thing to convert to health check.
 2. `options` (*object*):
+    - `timeout` (*number*): Milliseconds before health check times out with error.
+      Default: 60000 (1 minute).
     - `ttl` (*number*): Seconds to cache health check result.
       Default: 1 minute.
     - `cache` (*object*|*null*): Default [cache instance][node-cache-manager].
