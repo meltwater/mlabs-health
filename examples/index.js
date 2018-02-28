@@ -16,6 +16,7 @@ const examples = {
 
 const envVars = [
   'LOG_LEVEL',
+  'LOG_FILTER',
   'LOG_OUTPUT_MODE'
 ]
 
