@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.1.2] / 2018-02-28
+
+### Fixed
+
+- The timeout did not work with cache.
+
 ## [1.1.1] / 2018-02-28
 
 ### Fixed
@@ -25,6 +31,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Initial release.
 
-[Unreleased]: https://github.com/meltwater/mlabs-health/compare/v1.1.1...HEAD
+[Unreleased]: https://github.com/meltwater/mlabs-health/compare/v1.1.2...HEAD
+[1.1.2]: https://github.com/meltwater/mlabs-health/compare/v1.1.1...v1.1.2
 [1.1.1]: https://github.com/meltwater/mlabs-health/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/meltwater/mlabs-health/compare/v1.0.0...v1.1.0
