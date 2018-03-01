@@ -30,7 +30,7 @@ Creates a new health monitor.
     - `timeout` (*number*): Milliseconds before health check times out with error.
       Default: 60000 (1 minute).
     - `ttl` (*number*): Seconds to cache health check result.
-      Default: 1 minute.
+      Default: 60 (1 minute).
     - `cache` (*object*|*null*): Default [cache instance][node-cache-manager].
       Default: an in memory cache with the above `ttl`.
     - `strategy`: Health strategy for `health`.
@@ -52,7 +52,7 @@ Creates a health check for use by a health monitor.
     - `timeout` (*number*): Milliseconds before health check times out with error.
       Default: 60000 (1 minute).
     - `ttl` (*number*): Seconds to cache health check result.
-      Default: 1 minute.
+      Default: 60 (1 minute).
     - `cache` (*object*|*null*): Default [cache instance][node-cache-manager].
       Default: an in memory cache with the above `ttl`.
 
