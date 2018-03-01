@@ -28,7 +28,7 @@ Creates a new health monitor.
     - `delay` (*number*): Milliseconds before `health` emits first event.
       Default: 0.
     - `timeout` (*number*): Milliseconds before health check times out with error.
-      Default: 60000 (1 minute).
+      Default: 5000 (5 seconds).
     - `ttl` (*number*): Seconds to cache health check result.
       Default: 60 (1 minute).
     - `cache` (*object*|*null*): Default [cache instance][node-cache-manager].
