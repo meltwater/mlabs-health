@@ -674,7 +674,7 @@
   dependencies:
     arrify "^1.0.1"
 
-"@meltwater/examplr@^4.2.0":
+"@meltwater/examplr@^4.2.0", "@meltwater/examplr@^4.2.1":
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/@meltwater/examplr/-/examplr-4.2.1.tgz#dc3750c24af3c09c45af6491ff6b0b43935684c3"
   integrity sha512-xizA4IR8rjl9VHXJW32q+ScavdymOtbqurypy18l7eZmiwrkMjy0RV7sOZbKBn1qwCnyIAczPqRuFs/bRpE+xg==
@@ -685,22 +685,22 @@
     pino-pretty "^2.1.0"
 
 "@meltwater/mlabs-logger@^5.1.1":
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/@meltwater/mlabs-logger/-/mlabs-logger-5.1.1.tgz#f819799245a3baf492d3b8b7d8270aaa1603baf5"
-  integrity sha512-VfpuuLoj6QCK8a02+jQmVHqMS0zuAoxdwd6BxTWEkQWXWJiHSRSA+EFzccUcQTGuspXDeWbfW4CR9oPOPyzJDw==
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/@meltwater/mlabs-logger/-/mlabs-logger-5.1.2.tgz#7c226a3ca487a0b2d2be499d6b2c8597d8317365"
+  integrity sha512-B/ujx6UnZNisxta1rg/OB549HDzZ3X6T/zhrP3bCdegA8kASvnLq86Gwg3jAXO4BpsyFAq/MSXhpD01o7mLjKQ==
   dependencies:
-    "@meltwater/examplr" "^4.2.0"
+    "@meltwater/examplr" "^4.2.1"
     bunyan-formatter "^1.0.0"
     debug "^4.0.1"
     pino "^5.4.0"
 
 "@meltwater/phi@^2.0.0":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@meltwater/phi/-/phi-2.3.1.tgz#43bcde0449188fe590d7c083ce51edb54a1f9d4f"
-  integrity sha512-n6W/Zvc7tuD7lxGqT+FR/KShaMVTF5x0kIPXxUqFDWfC/5kERGMWhbmWOAz1n4b+SNgOkR8jJsFN+AWWtZBfIQ==
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/@meltwater/phi/-/phi-2.6.0.tgz#b095076f0db2d32292c09172607147cfbc6683b6"
+  integrity sha512-eVqC3ztxxtny6IbrdHZ2GtOTcflQyRXngg3cMe0Rk4nOgOyXvza+G6OdSC1XXFQwSYEFeH/F0DIdrzVqqk28qg==
   dependencies:
     ramda "~0.25.0"
-    ramda-adjunct "~2.9.0"
+    ramda-adjunct "~2.11.0"
 
 "@reactivex/rxjs@^5.4.2":
   version "5.5.12"
@@ -1885,14 +1885,7 @@ debug@^3.1.0:
   dependencies:
     ms "^2.1.1"
 
-debug@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-4.0.1.tgz#f9bb36d439b8d1f0dd52d8fb6b46e4ebb8c1cd5b"
-  integrity sha512-K23FHJ/Mt404FSlp6gSZCevIbTMLX0j3fmHhUEhQ3Wq0FMODW3+cUSoLdy1Gx4polAf4t/lphhmHH35BB8cLYw==
-  dependencies:
-    ms "^2.1.1"
-
-debug@^4.1.0:
+debug@^4.0.1, debug@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.1.0.tgz#373687bffa678b38b1cd91f861b63850035ddc87"
   integrity sha512-heNPJUJIqC+xB6ayLAMHaIrmN9HKa7aQO8MGqKpvCA+uJYVcvR6l5kgdrhRuwPFHU7P5/A1w0BjByPHwpfTDKg==
@@ -4989,21 +4982,7 @@ pino-std-serializers@^2.3.0:
   resolved "https://registry.yarnpkg.com/pino-std-serializers/-/pino-std-serializers-2.3.0.tgz#34eeaab97c055c28e22c0542ae55978e7e427786"
   integrity sha512-klfGoOsP6sJH7ON796G4xoUSx2fkpFgKHO4YVVO2zmz31jR+etzc/QzGJILaOIiCD6HTCFgkPx+XN8nk+ruqPw==
 
-pino@^5.4.0:
-  version "5.6.2"
-  resolved "https://registry.yarnpkg.com/pino/-/pino-5.6.2.tgz#523b7926db828e765a944eef6460682722fa27e5"
-  integrity sha512-JVMYqJkE58b2u5+t85zJLbUDOhoWDjEQqrRY1eQzuR4Ub9RIyUSQJms4deT8Joy+C/QIdrrie7NffgCm+ao9xw==
-  dependencies:
-    fast-json-parse "^1.0.3"
-    fast-redact "^1.2.0"
-    fast-safe-stringify "^2.0.6"
-    flatstr "^1.0.5"
-    pino-std-serializers "^2.2.1"
-    pump "^3.0.0"
-    quick-format-unescaped "^3.0.0"
-    sonic-boom "^0.6.1"
-
-pino@^5.4.1:
+pino@^5.4.0, pino@^5.4.1:
   version "5.10.1"
   resolved "https://registry.yarnpkg.com/pino/-/pino-5.10.1.tgz#24831a60681622f96f16df723b48eb6802fcd993"
   integrity sha512-a2pXIoYfEpQaGKR87/iY97jRjAqSVCyULyNsYJLTXCXbout4qGe2tvAz9jHlm1kMVwOw3IYVZ2baKP8GvLMeiw==
@@ -5199,10 +5178,10 @@ quick-lru@^1.0.0:
   resolved "https://registry.yarnpkg.com/quick-lru/-/quick-lru-1.1.0.tgz#4360b17c61136ad38078397ff11416e186dcfbb8"
   integrity sha1-Q2CxfGETatOAeDl/8RQW4Ybc+7g=
 
-ramda-adjunct@~2.9.0:
-  version "2.9.0"
-  resolved "https://registry.yarnpkg.com/ramda-adjunct/-/ramda-adjunct-2.9.0.tgz#1d9b149f987c0bec77fa34caa19cc7b9b9b55021"
-  integrity sha512-mUPWQl3Az5yVRDyljDRqwgtdau9hsmqAyT3xsup42zwv41i+E2pu04KHBlXsjMK+w1Wyf03bq2lL/sRTzrDLRQ==
+ramda-adjunct@~2.11.0:
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/ramda-adjunct/-/ramda-adjunct-2.11.0.tgz#45d7cf5da84f39ab3ff9e24b43dc098049a14822"
+  integrity sha512-xKhKGYz/SAcdlzXZvtxpCgcEMFQ7pEIWbNT43GX+Lk2of+718Lo9X4r/LVCrsvvRm8MWvmLS9lSagi68vwm6bQ==
 
 ramda@~0.25.0:
   version "0.25.0"
