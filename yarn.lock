@@ -711,13 +711,6 @@
     ramda "~0.26.1"
     ramda-adjunct "~2.16.1"
 
-"@reactivex/rxjs@^5.4.2":
-  version "5.5.12"
-  resolved "https://registry.yarnpkg.com/@reactivex/rxjs/-/rxjs-5.5.12.tgz#dbac7548c6c4c6c38d851b211591f95dc32d5903"
-  integrity sha512-xLiPlyPxpJd1ydEH1C2MSD9EFGW9OqyGep2gYXCTTfciSAjdYIJcaSeGk+kIhQXRiihyCjFfjlzcSQkq/t8bpw==
-  dependencies:
-    symbol-observable "1.0.1"
-
 JSV@^4.0.x:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/JSV/-/JSV-4.0.2.tgz#d077f6825571f82132f9dffaed587b4029feff57"
@@ -5695,6 +5688,13 @@ rxjs@^5.5.2:
   dependencies:
     symbol-observable "1.0.1"
 
+rxjs@^6.4.0:
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.4.0.tgz#f3bb0fe7bda7fb69deac0c16f17b50b0b8790504"
+  integrity sha512-Z9Yfa11F6B9Sg/BK9MnqnQ+aQYicPLtilXBp2yUtDt2JRCE0h26d33EnfO3ZxoNxG0T92OUucP3Ct7cpfkdFfw==
+  dependencies:
+    tslib "^1.9.0"
+
 safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.2, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
@@ -6368,6 +6368,11 @@ trim-right@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
   integrity sha1-yy4SAwZ+DI3h9hQJS5/kVwTqYAM=
+
+tslib@^1.9.0:
+  version "1.9.3"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.9.3.tgz#d7e4dd79245d85428c4d7e4822a79917954ca286"
+  integrity sha512-4krF8scpejhaOgqzBEcGM7yDIEfi0/8+8zDRZhNZZ2kjmHJ4hv3zCbQWxoJGz1iw5U0Jl0nma13xzHXcncMavQ==
 
 type-check@~0.3.2:
   version "0.3.2"

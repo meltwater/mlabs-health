@@ -99,8 +99,8 @@
   "dependencies": {
     "@meltwater/mlabs-logger": "^5.1.1",
     "@meltwater/phi": "^3.1.0",
-    "@reactivex/rxjs": "^5.4.2",
     "cache-manager": "^2.4.0",
+    "rxjs": "^6.4.0",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
