@@ -6,10 +6,17 @@
 [![Codecov](https://img.shields.io/codecov/c/github/meltwater/mlabs-health.svg)](https://codecov.io/gh/meltwater/mlabs-health)
 [![CircleCI](https://img.shields.io/circleci/project/github/meltwater/mlabs-health.svg)](https://circleci.com/gh/meltwater/mlabs-health)
 
-Health monitor for Node microservices.
+Health monitor for Node.js microservices.
 
 ## Description
 
+A health monitor tracks the health over time of a collection of health checks.
+A health check is a function, object or class with a `health` method,
+(or a boolean) that returns the current health
+of an internal or external dependency of a microservice.
+Health checks may be sync or async function (or return a promise)
+and should return (resolve) `true` if healthy or throw (reject)
+or return (resolve) `false` otherwise.
 
 ## Installation
 
