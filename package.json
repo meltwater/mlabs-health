@@ -12,7 +12,7 @@
   "homepage": "https://github.com/meltwater/mlabs-health",
   "bugs": "https://github.com/meltwater/mlabs-health/issues",
   "repository": "meltwater/mlabs-health",
-  "license": "SEE LICENSE IN LICENSE.txt",
+  "license": "Apache-2.0",
   "author": {
     "name": "Evan Sosenko",
     "email": "evan.sosenko@meltwater.com"
