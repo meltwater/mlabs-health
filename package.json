@@ -106,7 +106,7 @@
     "node": ">=10.13.0"
   },
   "dependencies": {
-    "@meltwater/mlabs-logger": "^5.3.0",
+    "@meltwater/mlabs-logger": "^6.0.0",
     "@meltwater/phi": "^3.1.0",
     "cache-manager": "^3.1.0",
     "rxjs": "^6.4.0",
