@@ -1,6 +1,6 @@
 {
   "name": "@meltwater/mlabs-health",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Health monitor for microservices.",
   "main": "dist/index.js",
   "module": "index.js",
