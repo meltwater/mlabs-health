@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.5.0] / 2020-06-16
+
+### Changed
+
+- Update dependencies.
+
 ## [1.4.0] / 2020-02-28
 
 ### Changed
@@ -70,7 +76,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 [makenew-node-lib]: https://github.com/meltwater/makenew-node-lib
 
-[Unreleased]: https://github.com/meltwater/mlabs-health/compare/v1.4.0...HEAD
+[Unreleased]: https://github.com/meltwater/mlabs-health/compare/v1.5.0...HEAD
+[1.5.0]: https://github.com/meltwater/mlabs-health/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/meltwater/mlabs-health/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/meltwater/mlabs-health/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/meltwater/mlabs-health/compare/v1.1.5...v1.2.0
