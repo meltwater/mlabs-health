@@ -5,7 +5,7 @@ export default ({ log }) => async () => {
   let healthy = null
   const healthCheck = createHealthCheck(true)
   const { event, emitter, emit } = createHealthEvents(healthCheck)
-  emitter.on(event, health => {
+  emitter.on(event, (health) => {
     log.debug({ health })
     healthy = health.healthy
     go = false

@@ -6,12 +6,12 @@ import {
 } from '../lib'
 
 export default ({ log }) => async () => {
-  const healthCheck = createHealthCheck(x => x, { cache: null })
+  const healthCheck = createHealthCheck((x) => x, { cache: null })
   const events = createHealthEvents(healthCheck)
   const { status } = createHealthObservables(events)
   const currentStatus = createValueFromObservable(status)
 
-  status.subscribe(status => {
+  status.subscribe((status) => {
     log.debug({ status })
   })
 

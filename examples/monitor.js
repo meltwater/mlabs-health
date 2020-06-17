@@ -2,7 +2,7 @@ import { createHealthMonitor } from '../lib'
 
 export default ({ log }) => async (bars = 1) => {
   const monitor = createHealthMonitor(
-    { foo: x => x, bar: x => x },
+    { foo: (x) => x, bar: (x) => x },
     { cache: null }
   )
 

@@ -2,9 +2,9 @@ import { sleeP } from '@meltwater/phi'
 
 import { createHealthCheck } from '../lib'
 
-export default options => async () => {
+export default (options) => async () => {
   const healthCheck = createHealthCheck(
-    async x => {
+    async (x) => {
       await sleeP(600)
       return x
     },
