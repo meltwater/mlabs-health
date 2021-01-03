@@ -909,6 +909,16 @@
     pino "^6.3.2"
     pino-pretty "^4.0.0"
 
+"@meltwater/examplr@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@meltwater/examplr/-/examplr-6.0.0.tgz#fe21f2fccf596194d68e232836827c10f90d3cb1"
+  integrity sha512-SG8jzxN1KYVr+GtwnMViAnP7YJ3JyJeAzSgf6IjQmZJfHvv04ylO8y/CBKYqq96HLSiA4tHK26+noBzjzQ4G9g==
+  dependencies:
+    bunyan-formatter "^1.0.0"
+    change-case "^4.1.1"
+    pino "^6.3.2"
+    pino-pretty "^4.0.0"
+
 "@meltwater/mlabs-logger@^6.0.0":
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/@meltwater/mlabs-logger/-/mlabs-logger-6.1.1.tgz#867565cdb17ae2b3811403a20151d3acd9095104"

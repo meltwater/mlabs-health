@@ -1,6 +1,6 @@
 import path from 'path'
 
-import createExamples from '@meltwater/examplr'
+import { createExamples } from '@meltwater/examplr'
 
 import check from './check'
 import events from './events'
