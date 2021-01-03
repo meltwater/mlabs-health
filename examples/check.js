@@ -1,6 +1,6 @@
 import { sleeP } from '@meltwater/phi'
 
-import { createHealthCheck } from '../lib'
+import { createHealthCheck } from '../index.js'
 
 export default (options) => async () => {
   const healthCheck = createHealthCheck(

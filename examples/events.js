@@ -1,4 +1,4 @@
-import { createHealthCheck, createHealthEvents } from '../lib'
+import { createHealthCheck, createHealthEvents } from '../index.js'
 
 export default ({ log }) => async () => {
   let go = true

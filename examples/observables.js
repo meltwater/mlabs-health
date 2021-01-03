@@ -3,7 +3,7 @@ import {
   createHealthEvents,
   createHealthObservables,
   createValueFromObservable
-} from '../lib'
+} from '../index.js'
 
 export default ({ log }) => async () => {
   const healthCheck = createHealthCheck((x) => x, { cache: null })

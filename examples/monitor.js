@@ -1,4 +1,4 @@
-import { createHealthMonitor } from '../lib'
+import { createHealthMonitor } from '../index.js'
 
 export default ({ log }) => async (bars = 1) => {
   const monitor = createHealthMonitor(

@@ -2,10 +2,10 @@ import path from 'path'
 
 import { createExamples } from '@meltwater/examplr'
 
-import check from './check'
-import events from './events'
-import monitor from './monitor'
-import observables from './observables'
+import check from './check.js'
+import events from './events.js'
+import monitor from './monitor.js'
+import observables from './observables.js'
 
 const examples = {
   check,
