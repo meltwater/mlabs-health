@@ -30,5 +30,5 @@ const { runExample } = createExamples({
 })
 
 runExample({
-  local: path.resolve(__dirname, 'local.json')
+  local: path.resolve('examples', 'local.json')
 })
