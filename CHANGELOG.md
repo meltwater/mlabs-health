@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [2.0.0] / 2021-01-03
+
+### Added
+
+- Publish as both ES and CommonJS module.
+
+### Changed
+
+- (**Breaking**) Use Conditional Exports to provide ES or CommonJS module.
+  Cannot import or require internal paths.
+- (**Breaking**) Drop support for Node.js versions before 12.13.0.
+
+### Removed
+
+- (**Breaking**) The `default` export.
+
 ## [1.5.1] / 2020-11-17
 
 ### Changed
@@ -83,7 +99,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 [makenew-node-lib]: https://github.com/meltwater/makenew-node-lib
 
-[Unreleased]: https://github.com/meltwater/mlabs-health/compare/v1.5.1...HEAD
+[Unreleased]: https://github.com/meltwater/mlabs-health/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/meltwater/mlabs-health/compare/v1.5.1...v2.0.0
 [1.5.1]: https://github.com/meltwater/mlabs-health/compare/v1.5.0...v1.5.1
 [1.5.0]: https://github.com/meltwater/mlabs-health/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/meltwater/mlabs-health/compare/v1.3.0...v1.4.0
